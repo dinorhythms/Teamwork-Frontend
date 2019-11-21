@@ -27,7 +27,7 @@ const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 const persistorConfig = {
   key: 'root',
   storage,
-  whitelist: ['authReducer']
+  whitelist: ['auth']
 }
 
 const reducer = persistReducer(persistorConfig, rootReducer);

@@ -1,16 +1,44 @@
-import { LOGIN } from '../types/authTypes';
+import { AUTH_FETCH, AUTH_RESOLVE, AUTH_REJECT, AUTH_CANCEL } from '../types/authTypes';
 
 // Initial State
 const initialState = {
-  loggedIn: false,
+  status: 'idle',
+  isAuthenticated: false,
+  user: null,
+  error: null
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN: {
+    case AUTH_FETCH: {
       return {
         ...state,
-        loggedIn: action.trueFalse,
+        status: 'loading'
+      }
+    }
+    case AUTH_RESOLVE: {
+      return {
+        ...state,
+        status: 'success',
+        isAuthenticated: true,
+        user: action.payload,
+        error: null
+      }
+    }
+    case AUTH_REJECT: {
+      return {
+        ...state,
+        status: 'failure',
+        error: action.payload
+      }
+    }
+    case AUTH_CANCEL: {
+      return {
+        ...state,
+        status: 'idle',
+        isAuthenticated: false,
+        user: null,
+        error: null
       }
     }
     default: {

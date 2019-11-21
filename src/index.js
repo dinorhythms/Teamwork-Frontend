@@ -8,6 +8,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { store, persistor } from './store';
 
+// persistor.purge();
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from 'react-redux';
 import Topbar from "../../components/Topbar/Topbar";
 import Sidebar from "../../components/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,7 +6,9 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
 	main: {
 		paddingLeft: 20,
-		paddingRight: 20,
+    paddingRight: 35,
+    paddingTop: 80,
+    paddingBottom: 50,
 		[theme.breakpoints.up("sm")]: {
 			paddingLeft: 220
 		},
@@ -21,8 +22,8 @@ const PrivateLayout = props => {
 
   const classes = useStyles();
   const [openSidebar, setOpenSidebar] = useState(false);
-  const auth = useSelector(state => state.auth);
-  const { user: { roleid, email, firstname, lastname } } = auth;
+
+  const { user: { roleid, email, firstname, lastname } } = props.auth;
   const fullName = firstname+' '+lastname
   const handleSidebarOpen = () => {
     setOpenSidebar(true);

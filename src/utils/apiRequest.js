@@ -4,7 +4,7 @@
  * @param method - http method
  * @param bodyParams - body parameters of request
  */
-export const postRequest = async (endpoint, data) => {
+export const postRequest = async (endpoint, data, token=null) => {
   const backend = process.env.REACT_APP_BACKEND;
   const url = `${backend}${endpoint}`;
   try {
@@ -13,7 +13,8 @@ export const postRequest = async (endpoint, data) => {
       body: JSON.stringify(data),
       headers: {
         Accept: "application/json",
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       }
     });
     return await response.json();

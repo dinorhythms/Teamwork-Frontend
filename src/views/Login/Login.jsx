@@ -38,15 +38,19 @@ export default function Login({ history }) {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch({ type: AUTH_FETCH});
-    const endpoint = '/auth/signin';
-    const response = await postRequest(endpoint, { email, password });
-    if(response.status === 'success'){
-      dispatch({ type: AUTH_RESOLVE, payload: response.data });
-      history.push('/');
-    } else {
-      dispatch({ type: AUTH_REJECT, payload: response.error });
+    try {
+      e.preventDefault();
+      dispatch({ type: AUTH_FETCH});
+      const endpoint = '/auth/signin';
+      const response = await postRequest(endpoint, { email, password });
+      if(response.status === 'success'){
+        dispatch({ type: AUTH_RESOLVE, payload: response.data });
+        history.push('/');
+      } else {
+        dispatch({ type: AUTH_REJECT, payload: response.error });
+      }
+    } catch (error) {
+      dispatch({ type: AUTH_REJECT, payload: "Internal Server Error, please try later" });
     }
   }
 

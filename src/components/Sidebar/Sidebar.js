@@ -15,6 +15,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const drawerWidth = 240;
 const drawerWidthSmall = 180;
@@ -53,6 +54,14 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  divButton: {
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 5,
+    paddingBottom: 5,
+    marginTop: 15,
+    marginBottom: 25
+  }
 }));
 
 function Sidebar(props) {
@@ -93,6 +102,12 @@ function Sidebar(props) {
 
   const drawer = (
     <div>
+      <div className={classes.divButton}>
+        <Button variant="contained" size="large" color="primary" fullWidth>
+            Compose
+        </Button>
+      </div>
+      <Divider />
       <List>
         {pages.map((text, index) => (
           <ListItem button key={text.title} onClick={()=>props.history.push(text.href)}>
@@ -121,6 +136,7 @@ function Sidebar(props) {
 
   return (
     <div className={classes.root}>
+
       <CssBaseline />
       <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">

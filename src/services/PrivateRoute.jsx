@@ -14,10 +14,13 @@ const PrivateRoute = ({
 	const auth = useSelector(state => state.auth);
   const { isAuthenticated, user } = auth;
 
-  if (!isAuthenticated || !role.includes(user.roleid) ) history.push('/login')
+  if (!isAuthenticated || (user && !role.includes(user.roleid))){
+		history.goBack('/login');
+		return null;
+	}
 	
 	return (
-		<Layout history={history}>
+		<Layout history={history} auth={auth}>
 			<Route exact={exact} path={path} component={Component} />
 		</Layout>
 	);

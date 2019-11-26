@@ -89,7 +89,7 @@ const Topbar = ({ onSidebarOpen, history, fullName }) => {
             Teamwork
           </Typography>
           <div className={classes.grow} />
-          <Typography variant="overline" >
+          <Typography variant="overline" className={classes.sectionDesktop}>
             { fullName }
           </Typography>
           <div className={classes.sectionDesktop}>

@@ -15,6 +15,7 @@ import Login from "./views/Login";
 import NotFound from "./views/Notfound/NotFound";
 import Logout from "./views/Logout";
 import Signup from "./views/Signup";
+import CreateArticle from "./views/CreateArticle";
 
 const adminRole = 1;
 const employeeRole = 2;
@@ -27,22 +28,29 @@ function App(props) {
 				path="/"
 				component={Dashboard}
 				role={[employeeRole, adminRole]}
-        layout={PrivateLayout}
-        {...props}
+				layout={PrivateLayout}
+				{...props}
 			/>
 			<PrivateRoute
 				path="/logout"
 				component={Logout}
 				role={[employeeRole, adminRole]}
-        layout={PrivateLayout}
-        {...props}
+				layout={PrivateLayout}
+				{...props}
 			/>
 			<PrivateRoute
 				path="/create"
 				component={Signup}
 				role={[adminRole]}
-        layout={PrivateLayout}
-        {...props}
+				layout={PrivateLayout}
+				{...props}
+			/>
+			<PrivateRoute
+				path="/compose"
+				component={CreateArticle}
+				role={[employeeRole, adminRole]}
+				layout={PrivateLayout}
+				{...props}
 			/>
 			<PublicRoute path="/login" component={Login} />
 			<PublicRoute component={NotFound} />

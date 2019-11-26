@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 
   },
   drawerPaper: {
-    marginTop: 48,
+    width: drawerWidth,
     [theme.breakpoints.up('sm')]: {
       width: drawerWidthSmall,
       marginTop: 65,
@@ -100,17 +100,22 @@ function Sidebar(props) {
     },
   ];
 
+  const navigateAndClose = (link) => {
+    props.history.push(link);
+    onClose(true);
+  }
+
   const drawer = (
     <div>
       <div className={classes.divButton}>
-        <Button variant="contained" size="large" color="primary" fullWidth>
+        <Button variant="contained" size="large" color="primary" onClick={()=>navigateAndClose('/compose')} fullWidth>
             Compose
         </Button>
       </div>
       <Divider />
       <List>
         {pages.map((text, index) => (
-          <ListItem button key={text.title} onClick={()=>props.history.push(text.href)}>
+          <ListItem button key={text.title} onClick={()=>navigateAndClose(text.href)}>
             <ListItemIcon>{text.icon}</ListItemIcon>
             <ListItemText primary={text.title} />
           </ListItem>
@@ -119,13 +124,13 @@ function Sidebar(props) {
       <Divider />
       <List>
         {props.role && props.role === 1?(
-          <ListItem button onClick={()=>props.history.push('create')}>
+          <ListItem button onClick={()=>navigateAndClose('create')}>
             <ListItemIcon><AddCircleIcon /></ListItemIcon>
             <ListItemText primary={'Create User'} />
           </ListItem>
         ):null}
         {pages2.map((text, index) => (
-          <ListItem button key={text.title} onClick={()=>props.history.push(text.href)}>
+          <ListItem button key={text.title} onClick={()=>navigateAndClose(text.href)}>
             <ListItemIcon>{text.icon}</ListItemIcon>
             <ListItemText primary={text.title} />
           </ListItem>

@@ -15,7 +15,7 @@ import Login from "./views/Login";
 import NotFound from "./views/Notfound/NotFound";
 import Logout from "./views/Logout";
 import Signup from "./views/Signup";
-import CreateArticle from "./views/CreateArticle";
+import Compose from "./views/Compose";
 
 const adminRole = 1;
 const employeeRole = 2;
@@ -47,7 +47,7 @@ function App(props) {
 			/>
 			<PrivateRoute
 				path="/compose"
-				component={CreateArticle}
+				component={Compose}
 				role={[employeeRole, adminRole]}
 				layout={PrivateLayout}
 				{...props}

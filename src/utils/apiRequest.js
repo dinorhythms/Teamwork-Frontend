@@ -22,3 +22,27 @@ export const postRequest = async (endpoint, data, token=null) => {
     new Error(error.message);
   }
 };
+
+/**
+ * post API Request handler
+ * @param url - api endpoint
+ * @param method - http method
+ * @param bodyParams - body parameters of request
+ */
+export const postRequestImage = async (endpoint, data, token=null) => {
+  const backend = process.env.REACT_APP_BACKEND;
+  const url = `${backend}${endpoint}`;
+  try {
+    const response = await fetch(url, {
+      method: 'post',
+      body: data,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    });
+    return await response.json();
+  } catch (error) {
+    console.error(error.message)
+    new Error(error.message);
+  }
+};
